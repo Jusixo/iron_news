@@ -1,0 +1,22 @@
+<!-- <div class="header">
+  <%= link_to new_story_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Story
+  <% end %>
+</div> -->
+<div class="table-responsive">
+  <table class="table">
+    <tbody class="table-body">
+      <%- @stories.each.with_index do |story, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= link_to story.title, story.link %></td>
+      </tr>
+      <tr>
+        <td>Created:<%= story.created_at %></td>
+        <td>By <%= story.email %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
