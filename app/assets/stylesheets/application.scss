@@ -17,3 +17,22 @@
 
 @import 'font-awesome';
 @import 'bootstrap-social';
+
+body, html {
+  min-height: 100vh;
+  position: relative;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer .navbar {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}

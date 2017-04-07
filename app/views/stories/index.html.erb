@@ -9,12 +9,17 @@
     <tbody class="table-body">
       <%- @stories.each.with_index do |story, index| %>
       <tr>
-        <td><%= index + 1 %></td>
-        <td><%= link_to story.title, story.link %></td>
-      </tr>
-      <tr>
-        <td>Created:<%= story.created_at %></td>
-        <td>By <%= story.email %></td>
+        <td>
+          <ul>
+            <li><%= index + 1 %> <%= link_to story.title, story.link %></li>
+            <li>Posted: <%= story.created_at %> &emsp; By:  <%=  story.email %></li>
+          </ul>
+        </td>
+        <!-- <td>
+          <%= link_to story, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <% end %>
+        </td> -->
       </tr>
       <% end %>
     </tbody>
