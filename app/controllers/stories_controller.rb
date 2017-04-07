@@ -1,7 +1,9 @@
 class StoriesController < ApplicationController
   # GET /stories
   def index
-    @stories = Story.all.sort_by { |title| title.created_at }.reverse
+    @page = params[:page].to_i
+
+    @stories = Story.all.order(created_at: :desc).page(@page).per(8)
   end
 
   # GET /stories/1
