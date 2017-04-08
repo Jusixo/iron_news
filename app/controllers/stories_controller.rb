@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
   # GET /stories
   def index
-    @page = params[:page].to_i
+    @page == params[:page].to_i
 
     @stories = Story.all.order(created_at: :desc).page(@page).per(8)
   end
