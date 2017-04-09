@@ -8,4 +8,6 @@
 require 'open-uri'
 require 'nokogiri'
 
-Nokogiri::HTML(open('https://news.ycombinator.com')).css(".storylink").each { |link| Story.create(title: link.content, link: link.values.first, email: 'rubybrigade@gmail.com') }
+(1..10).each do |page|
+  Nokogiri::HTML(open('https://news.ycombinator.com')).css(".storylink").each { |link| Story.create(title: link.content, link: link.values.first, email: 'rubybrigade@gmail.com') }
+end

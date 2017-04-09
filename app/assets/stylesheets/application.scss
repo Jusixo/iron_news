@@ -19,7 +19,7 @@
 @import 'bootstrap-social';
 
 body, html {
-  min-height: 100vh;
+  min-height: 110vh;
   position: relative;
 }
 
@@ -35,4 +35,6 @@ footer .navbar {
 
 ul {
   list-style: none;
+  margin-bottom: 10px;
+
 }
