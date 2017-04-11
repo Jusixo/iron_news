@@ -8,12 +8,11 @@
   <table class="table">
     <tbody class="table-body">
 
-      <%= paginate @stories %>
       <%- @stories.each.with_index do |story, index| %>
       <tr>
         <td>
           <ul>
-            <li><%= index + 1 + @starting_number %> <%= link_to story.title, story.link %><%=  %></li>
+            <li><%= index + 1 %> <%= link_to story.title, story.link %></li>
             <li>Posted: <%= distance_of_time_in_words(Time.now.to_i - story.created_at.to_i) %> ago &emsp; By:  <%=  story.email %></li>
           </ul>
         </td>
@@ -26,4 +25,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= paginate @stories %>
 </div>
