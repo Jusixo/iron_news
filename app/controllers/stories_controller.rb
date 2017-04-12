@@ -1,4 +1,5 @@
 class StoriesController < ApplicationController
+  before_action :authorize!, except: [:index]
   # GET /stories
   def index
     @page == params[:page].to_i
@@ -19,11 +20,17 @@ class StoriesController < ApplicationController
   # GET /stories/1/edit
   def edit
     @story = Story.find(params[:id])
+
+    unless @story.created_by == current_user
+      redirect_to stories_path, notice: "Error"
+      return
+    end
   end
 
   # POST /stories
   def create
     @story = Story.new(story_params)
+    @story.created_by = current_user
 
     if @story.save
       redirect_to stories_path, notice: 'Story was successfully created.'
@@ -35,6 +42,13 @@ class StoriesController < ApplicationController
   # PATCH/PUT /stories/1
   def update
     @story = Story.find(params[:id])
+
+    unless @story.created_by == current_user
+      redirect_to stories_path, notice: "Change account?"
+      return
+    end
+
+
     if @story.update(story_params)
       redirect_to @story, notice: 'Story was successfully updated.'
     else
@@ -45,8 +59,14 @@ class StoriesController < ApplicationController
   # DELETE /stories/1
   def destroy
     @story = Story.find(params[:id])
+
+    unless @story.created_by == current_user
+      redirect_to stories_path, notice: "Error"
+      return
+    end
+
     @story.destroy
-    redirect_to stories_url, notice: 'Story was successfully destroyed.'
+    redirect_to stories_url, notice: 'Story was successfully deleted.'
   end
 
   private
