@@ -21,7 +21,7 @@ class StoriesController < ApplicationController
   def edit
     @story = Story.find(params[:id])
 
-    unless @story.created_by == current_user
+    unless @story.user == current_user
       redirect_to stories_path, notice: "Error"
       return
     end
@@ -30,7 +30,7 @@ class StoriesController < ApplicationController
   # POST /stories
   def create
     @story = Story.new(story_params)
-    @story.created_by = current_user
+    @story.user = current_user
 
     if @story.save
       redirect_to stories_path, notice: 'Story was successfully created.'
@@ -43,11 +43,10 @@ class StoriesController < ApplicationController
   def update
     @story = Story.find(params[:id])
 
-    unless @story.created_by == current_user
+    unless @story.user != current_user
       redirect_to stories_path, notice: "Change account?"
       return
     end
-
 
     if @story.update(story_params)
       redirect_to @story, notice: 'Story was successfully updated.'
@@ -60,7 +59,7 @@ class StoriesController < ApplicationController
   def destroy
     @story = Story.find(params[:id])
 
-    unless @story.created_by == current_user
+    unless @story.user == current_user
       redirect_to stories_path, notice: "Error"
       return
     end
@@ -71,7 +70,7 @@ class StoriesController < ApplicationController
 
   private
     # Only allow a trusted parameter "white list" through.
-    def story_params
-      params.require(:story).permit(:title, :link, :email)
-    end
+  def story_params
+    params.require(:story).permit(:title, :link, :email)
+  end
 end

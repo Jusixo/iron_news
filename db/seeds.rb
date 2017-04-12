@@ -8,4 +8,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-Nokogiri::HTML(open('https://news.ycombinator.com')).css(".storylink").each { |link| Story.create(title: link.content, link: link.values.first, email: 'rubybrigade@gmail.com') }
+user_1 = User.create!(name: "justin", email: "justin@gmail.com", password: "password", password_confirmation: "password")
+user_2 = User.create!(name: "patrick", email: "pjm@gmail.com", password: "password", password_confirmation: "password")
+
+Nokogiri::HTML(open("https://news.ycombinator.com")).css(".storylink").each_with_index { |article, index| Story.create(title: article.content, link: article.values.first, user: index.odd? ? user_1 : user_2) }
