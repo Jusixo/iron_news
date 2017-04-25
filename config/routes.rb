@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get 'stories/index'
   root 'stories#index'
 
+  mount Shrine::DownloadEndpoint => "/attachments"
+
 end
