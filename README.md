@@ -13,6 +13,4 @@
 
 ### Screen Shot
 
-https://raw.githubusercontent.com/Jusixo/iron_news/master/app/assets/images/Screen%20Shot%202017-05-07%20at%209.40.58%20PM.png  
-
 <img src="https://raw.githubusercontent.com/Jusixo/iron_news/master/app/assets/images/Screen%20Shot%202017-05-07%20at%209.40.58%20PM.png" width="300">
